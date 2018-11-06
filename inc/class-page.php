@@ -47,9 +47,10 @@ class Page {
 			</div>
 			<form action='options.php' method='post'>
 				<?php
-				foreach ($this->sections as $id => $section) {
-					settings_fields( $id );
-				}
+				// foreach ($this->sections as $id => $section) {
+					// var_dump($id); die();
+					settings_fields( $this->get_menu_slug() . '-options' );
+				// }
 				/**
 				 * Do all the sections for the current page
 				 */
@@ -87,7 +88,7 @@ class Page {
 				/**
 				 * Then actually add that setting to the current section
 				 */
-				register_setting( $section_id, $option_id );
+				register_setting( $page_id . '-options', $option_id );
 			}
 		}
 	}
